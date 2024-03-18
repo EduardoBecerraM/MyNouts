@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Nouts</string>
+
+    <string name="nouts_top_level_destination_today">Today</string>
+    <string name="nouts_top_level_destination_my_nouts">My Nouts</string>
+    <string name="nouts_top_level_destination_doned">Doned</string>
 </resources>
