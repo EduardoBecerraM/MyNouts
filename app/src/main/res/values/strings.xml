@@ -4,4 +4,14 @@
     <string name="nouts_top_level_destination_today">Today</string>
     <string name="nouts_top_level_destination_my_nouts">My Nouts</string>
     <string name="nouts_top_level_destination_doned">Doned</string>
+
+    <!--region Today screen-->
+    <string name="today_screen_emptystate_title">Wow! you finished your notes for today</string>
+    <string name="today_screen_emptystate_message">Take a break!</string>
+    <!--endregion-->
+
+    <!--region No screen-->
+    <string name="no_screen_emptystate_title">Screen under construction</string>
+    <string name="no_screen_emptystate_message">This screen is still under construction</string>
+    <!--endregion-->
 </resources>

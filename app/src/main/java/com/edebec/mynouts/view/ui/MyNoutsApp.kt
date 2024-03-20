@@ -1,8 +1,10 @@
 package com.edebec.mynouts.view.ui
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -17,36 +19,56 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.edebec.mynouts.R
-import com.edebec.mynouts.ui.theme.MyNoutsTheme
+import com.edebec.mynouts.view.ui.components.EmptyState
 
-@Preview(name = "BottomMenuPreview", uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
 @Composable
-private fun BottomMenuPreview() {
-    MyNoutsTheme {
-        BottomNavigation()
-    }
+fun MyNoutsApp() {
+    HomeScreen()
 }
 
 @Composable
-fun BottomNavigation(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier) {
     var selectedDestination by rememberSaveable { mutableStateOf(NoutsRoute.TODAY) }
 
-    NavigationBar(modifier = modifier.fillMaxWidth(), containerColor = MaterialTheme.colorScheme.surface) {
-        TOP_LEVEL_DESTINATIONS.forEach { noutsDestination ->
-            NavigationBarItem(
-                selected = selectedDestination == noutsDestination.route,
-                onClick = { selectedDestination = noutsDestination.route },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = if (selectedDestination == noutsDestination.route) noutsDestination.selectedIcon else noutsDestination.unselectedIcon),
-                        contentDescription = null
-                    )
-                },
-                label = {
-                    Text(text = stringResource(id = noutsDestination.iconTextId), style = MaterialTheme.typography.labelMedium)
-                })
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        when (selectedDestination) {
+            NoutsRoute.TODAY -> {
+                TodayScreen(modifier = Modifier.weight(1f), nouts = emptyList())
+            }
+
+            else -> {
+                EmptyState(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f),
+                    illustration = R.drawable.undraw_completed_m9ci_1,
+                    title = R.string.no_screen_emptystate_title,
+                    message = R.string.no_screen_emptystate_message
+                )
+            }
+        }
+
+        NavigationBar(modifier = modifier.fillMaxWidth(), containerColor = MaterialTheme.colorScheme.surface) {
+            TOP_LEVEL_DESTINATIONS.forEach { noutsDestination ->
+                NavigationBarItem(
+                    selected = selectedDestination == noutsDestination.route,
+                    onClick = { selectedDestination = noutsDestination.route },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = if (selectedDestination == noutsDestination.route) noutsDestination.selectedIcon else noutsDestination.unselectedIcon),
+                            contentDescription = null
+                        )
+                    },
+                    label = {
+                        Text(text = stringResource(id = noutsDestination.iconTextId), style = MaterialTheme.typography.labelMedium)
+                    }
+                )
+            }
         }
     }
 }
