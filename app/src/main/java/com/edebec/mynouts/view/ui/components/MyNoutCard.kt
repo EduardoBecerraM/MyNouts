@@ -1,6 +1,5 @@
 package com.edebec.mynouts.view.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,10 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.edebec.mynouts.ui.theme.MyNoutsTheme
-import com.edebec.mynouts.view.ui.TodayScreen
 import com.edebec.mynouts.view.ui.model.Nout
 
 /*@Preview(name = "NoutSListPreview", uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
@@ -117,7 +113,9 @@ private fun NoutCard(modifier: Modifier = Modifier, nout: Nout) {
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                Checkbox(checked = nout.isChecked, onCheckedChange = {})
+                if (nout.isCheckable) {
+                    Checkbox(checked = nout.isChecked, onCheckedChange = {})
+                }
             }
             Text(
                 text = nout.description,
@@ -130,7 +128,6 @@ private fun NoutCard(modifier: Modifier = Modifier, nout: Nout) {
         }
     }
 }
-
 
 private fun isPrimeNumber(number: Int): Boolean {
     return number % 2 == 0
