@@ -10,6 +10,13 @@
     <string name="today_screen_emptystate_message">Take a break!</string>
     <!--endregion-->
 
+    <!--region MyNouts screen-->
+    <string name="myNouts_screen_searchBar_placeholder">Search in my nouts</string>
+    <string name="myNouts_screen_newNout">New nout</string>
+    <string name="myNouts_screen_emptystate_title">Wow! you don\'t have nouts yet</string>
+    <string name="myNouts_screen_emptystate_message">Make one!</string>
+    <!--endregion-->
+
     <!--region No screen-->
     <string name="no_screen_emptystate_title">Screen under construction</string>
     <string name="no_screen_emptystate_message">This screen is still under construction</string>

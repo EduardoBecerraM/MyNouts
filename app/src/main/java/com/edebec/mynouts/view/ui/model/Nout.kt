@@ -5,5 +5,6 @@ data class Nout(
     val title: String,
     val description: String,
     val datetime: String,
+    val isCheckable: Boolean,
     val isChecked: Boolean
 )

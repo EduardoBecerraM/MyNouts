@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.edebec.mynouts.R
 import com.edebec.mynouts.view.ui.components.EmptyState
+import com.edebec.mynouts.view.ui.model.Nout
 
 @Composable
 fun MyNoutsApp() {
@@ -39,6 +40,10 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         when (selectedDestination) {
             NoutsRoute.TODAY -> {
                 TodayScreen(modifier = Modifier.weight(1f), nouts = emptyList())
+            }
+
+            NoutsRoute.MY_NOUTS -> {
+                MyNoutsScreen(modifier = Modifier.weight(1f), nouts = emptyList())
             }
 
             else -> {
