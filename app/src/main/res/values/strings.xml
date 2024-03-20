@@ -9,4 +9,9 @@
     <string name="today_screen_emptystate_title">Wow! you finished your notes for today</string>
     <string name="today_screen_emptystate_message">Take a break!</string>
     <!--endregion-->
+
+    <!--region No screen-->
+    <string name="no_screen_emptystate_title">Screen under construction</string>
+    <string name="no_screen_emptystate_message">This screen is still under construction</string>
+    <!--endregion-->
 </resources>
