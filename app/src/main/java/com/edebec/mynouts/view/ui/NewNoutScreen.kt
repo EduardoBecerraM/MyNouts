@@ -327,24 +327,6 @@ fun ShowCategoriesDropDown(modifier: Modifier = Modifier, isExpanded: Boolean, o
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun SheetPreview() {
-    val sheetState = rememberModalBottomSheetState()
-    var showBottomSheet by rememberSaveable { mutableStateOf(false) }
-
-    MyNoutsTheme {
-        Button(onClick = { showBottomSheet = true }) {
-
-        }
-
-        if (showBottomSheet) {
-            ShowSheetAddCategory(sheetState = sheetState, onDismiss = { showBottomSheet = false })
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShowSheetAddCategory(modifier: Modifier = Modifier, sheetState: SheetState, onDismiss: () -> Unit) {
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState, modifier = modifier.padding(6.dp)) {
