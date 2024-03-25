@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Nouts</string>
 
+    <string name="action_button_yes">Yes</string>
+    <string name="action_button_cancel">Cancel</string>
+
     <string name="nouts_top_level_destination_today">Today</string>
     <string name="nouts_top_level_destination_my_nouts">My Nouts</string>
     <string name="nouts_top_level_destination_doned">Doned</string>
@@ -20,5 +23,17 @@
     <!--region No screen-->
     <string name="no_screen_emptystate_title">Screen under construction</string>
     <string name="no_screen_emptystate_message">This screen is still under construction</string>
+    <!--endregion-->
+
+    <!--region New Nout screen-->
+    <string name="newNout_screen_title_nout_hint">Give me a title</string>
+    <string name="newNout_screen_description_nout_hint">My nout description</string>
+    <string name="newNout_screen_save_nout_button">Save my nout</string>
+    <string name="newNout_screen_add_category_button">Category</string>
+    <string name="newNout_screen_add_category_menu_option">Add category</string>
+    <string name="newNout_screen_delete_nout_dialog_title">Delete your nout?</string>
+    <string name="newNout_screen_delete_nout_dialog_message">Your nout will be deleted permanently</string>
+    <string name="newNout_screen_add_category_title_hint">Category name</string>
+    <string name="newNout_screen_add_category_color_hint">Choose your color</string>
     <!--endregion-->
 </resources>
