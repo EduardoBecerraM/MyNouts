@@ -19,18 +19,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import com.edebec.mynouts.R
 import com.edebec.mynouts.view.ui.components.EmptyState
-import com.edebec.mynouts.view.ui.model.Nout
+import com.edebec.mynouts.view.ui.model.Routes
+
 
 @Composable
-fun MyNoutsApp() {
-    HomeScreen()
-}
-
-@Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    var selectedDestination by rememberSaveable { mutableStateOf(NoutsRoute.TODAY) }
+fun HomeScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
+    var selectedDestination by rememberSaveable { mutableStateOf(Routes.TodayScreen.id) }
 
     Column(
         modifier = modifier
@@ -38,12 +35,12 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             .background(MaterialTheme.colorScheme.background)
     ) {
         when (selectedDestination) {
-            NoutsRoute.TODAY -> {
+            Routes.TodayScreen.id -> {
                 TodayScreen(modifier = Modifier.weight(1f), nouts = emptyList())
             }
 
-            NoutsRoute.MY_NOUTS -> {
-                MyNoutsScreen(modifier = Modifier.weight(1f), nouts = emptyList())
+            Routes.MyNoutsScreen.id -> {
+                MyNoutsScreen(modifier = Modifier.weight(1f), nouts = emptyList(), navHostController = navHostController)
             }
 
             else -> {
@@ -61,11 +58,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         NavigationBar(modifier = modifier.fillMaxWidth(), containerColor = MaterialTheme.colorScheme.surface) {
             TOP_LEVEL_DESTINATIONS.forEach { noutsDestination ->
                 NavigationBarItem(
-                    selected = selectedDestination == noutsDestination.route,
-                    onClick = { selectedDestination = noutsDestination.route },
+                    selected = selectedDestination == noutsDestination.route.id,
+                    onClick = { selectedDestination = noutsDestination.route.id },
                     icon = {
                         Icon(
-                            painter = painterResource(id = if (selectedDestination == noutsDestination.route) noutsDestination.selectedIcon else noutsDestination.unselectedIcon),
+                            painter = painterResource(id = if (selectedDestination == noutsDestination.route.id) noutsDestination.selectedIcon else noutsDestination.unselectedIcon),
                             contentDescription = null
                         )
                     },
@@ -78,14 +75,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 }
 
-object NoutsRoute {
-    const val TODAY = "Today"
-    const val MY_NOUTS = "MyNouts"
-    const val DONED = "Doned"
-}
-
 data class NoutsTopLevelDestination(
-    val route: String,
+    val route: Routes,
     @DrawableRes val selectedIcon: Int,
     @DrawableRes val unselectedIcon: Int,
     @StringRes val iconTextId: Int
@@ -93,19 +84,19 @@ data class NoutsTopLevelDestination(
 
 val TOP_LEVEL_DESTINATIONS = listOf(
     NoutsTopLevelDestination(
-        route = NoutsRoute.TODAY,
+        route = Routes.TodayScreen,
         selectedIcon = R.drawable.circle_filled,
         unselectedIcon = R.drawable.circle_outlined,
         iconTextId = R.string.nouts_top_level_destination_today
     ),
     NoutsTopLevelDestination(
-        route = NoutsRoute.MY_NOUTS,
+        route = Routes.MyNoutsScreen,
         selectedIcon = R.drawable.today_calendar_filled,
         unselectedIcon = R.drawable.today_calendar,
         iconTextId = R.string.nouts_top_level_destination_my_nouts
     ),
     NoutsTopLevelDestination(
-        route = NoutsRoute.DONED,
+        route = Routes.DonedScreen,
         selectedIcon = R.drawable.check,
         unselectedIcon = R.drawable.check,
         iconTextId = R.string.nouts_top_level_destination_doned

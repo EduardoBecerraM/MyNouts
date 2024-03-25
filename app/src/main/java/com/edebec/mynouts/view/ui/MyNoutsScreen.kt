@@ -22,11 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.edebec.mynouts.R
 import com.edebec.mynouts.ui.theme.MyNoutsTheme
 import com.edebec.mynouts.view.ui.components.EmptyState
 import com.edebec.mynouts.view.ui.components.NoutsList
 import com.edebec.mynouts.view.ui.model.Nout
+import com.edebec.mynouts.view.ui.model.Routes
 
 
 @Preview
@@ -38,10 +40,10 @@ private fun MyNoutsScreenPreview() {
 }
 
 @Composable
-fun MyNoutsScreen(modifier: Modifier = Modifier, nouts: List<Nout>) {
+fun MyNoutsScreen(modifier: Modifier = Modifier, nouts: List<Nout>, navHostController: NavHostController) {
     Scaffold(modifier = modifier, floatingActionButton = {
         ExtendedFloatingActionButton(
-            onClick = { },
+            onClick = { navHostController.navigate(Routes.NewNoutScreen.createRoute(0)) },
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
             contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
             icon = { Icon(imageVector = Icons.Default.Add, contentDescription = null) },
